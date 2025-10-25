@@ -1,0 +1,205 @@
+/* --- 1. Variáveis de Estilo --- */
+:root {
+    --primary-color: #e13a3e;
+    --background-color: #fff190;
+    --card-soft-bg: #FFFBF0;
+    --card-white: #FFFFFF;
+    --text-color: #212529;
+    --heading-font: 'Poppins', sans-serif;
+    --body-font: 'Poppins', sans-serif;
+    --border-radius-lg: 20px;
+    --border-radius-md: 12px;
+}
+
+/* --- 2. Estilos Gerais e Componentes Compartilhados --- */
+body {
+    background-color: var(--background-color);
+    font-family: var(--body-font);
+    color: var(--text-color);
+}
+
+.font-heading {
+    font-family: var(--heading-font);
+    font-weight: 700;
+}
+
+.form-control {
+    border-radius: var(--border-radius-md);
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.btn-custom-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: var(--border-radius-md);
+    color: white;
+    font-weight: 500;
+}
+.btn-custom-primary:hover {
+    background-color: #c82a2e;
+    border-color: #c82a2e;
+    color: white;
+}
+
+.modal-content {
+    border-radius: var(--border-radius-lg);
+    border: none;
+}
+.modal-header, .modal-footer {
+     border: none;
+}
+
+.nav-pills .nav-link {
+    border-radius: var(--border-radius-md);
+    color: var(--text-color);
+    font-weight: 500;
+}
+.nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* --- 3. Estilos Específicos da Página de Login --- */
+body.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.login-container .logo {
+    height: 90px;
+}
+
+.login-card {
+    background-color: var(--card-white);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    border: none;
+}
+
+.login-card .btn-custom-primary {
+    padding: 0.75rem 1.2rem;
+    width: 100%;
+}
+
+
+/* --- 4. Estilos Específicos do Dashboard --- */
+
+/* Header / Navbar */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 0.5rem 1.5rem;
+}
+
+.navbar .logo {
+    height: 45px;
+}
+
+.navbar .nav-link, .navbar .btn-logout {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+}
+.navbar .nav-link:hover, .navbar .btn-logout:hover {
+    color: white;
+}
+.navbar-nav .nav-link.active {
+    font-weight: 600;
+    color: white;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: var(--border-radius-md);
+    padding: 0.5rem 1.2rem;
+}
+
+.btn-logout {
+    border-color: rgba(255, 255, 255, 0.85);
+    border-radius: var(--border-radius-md);
+}
+.btn-logout:hover {
+     background-color: rgba(255, 255, 255, 0.1);
+     border-color: white;
+}
+
+/* Cards de Estatísticas */
+.stat-card {
+    background-color: var(--card-white);
+    border-radius: var(--border-radius-lg);
+    border: none;
+    padding: 1.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+}
+.stat-card .card-subtitle {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+.stat-card .card-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 2.2rem;
+}
+.stat-card .icon-box {
+    font-size: 1.5rem;
+    background-color: #FEF2F2;
+    color: var(--primary-color);
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-md);
+}
+.trend {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.trend-up { color: #28a745; }
+.trend-down { color: var(--primary-color); }
+
+/* Card Principal de Transações */
+.main-card {
+    background-color: var(--card-soft-bg);
+    border-radius: var(--border-radius-lg);
+    border: none;
+    padding: 2rem;
+}
+
+.main-card .btn-custom-primary {
+    padding: 0.6rem 1.2rem;
+}
+
+/* Lista de Transações */
+.transaction-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--card-white);
+    border-radius: var(--border-radius-md);
+    border-left: 5px solid;
+    margin-bottom: 0.8rem;
+}
+
+.login-page .logo-grande {
+    height: 250px; /* Você pode ajustar este valor como preferir */
+    width: auto;   /* Mantém a proporção da imagem */
+    display: block;       /* Trata a imagem como um bloco */
+    margin-left: auto;    /* Adiciona margem automática à esquerda */
+    margin-right: auto;   /* Adiciona margem automática à direita */
+}
+.transaction-item.receita { border-left-color: #28a745; }
+.transaction-item.despesa { border-left-color: var(--primary-color); }
+.transaction-value.receita { color: #28a745; }
+.transaction-value.despesa { color: var(--primary-color); }
