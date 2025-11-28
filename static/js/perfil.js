@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // NOTA: Em uma aplicação real, estes dados viriam de um servidor 
-    // ou do localStorage após o login ser efetuado com sucesso.
-    // Como nosso formulário de login atual não salva dados, 
-    // estamos usando um objeto fictício para demonstração.
     const usuarioFicticio = {
         nome: "Giovana",
         tipo: "Pessoa Física",

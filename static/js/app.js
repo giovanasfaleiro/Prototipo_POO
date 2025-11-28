@@ -1,8 +1,3 @@
-// ======================================================
-// APP.JS - LÓGICA CENTRAL COMPARTILHADA
-// ======================================================
-
-// --- DADOS DE EXEMPLO ---
 const transacoesExemplo = [
     { id: 1, descricao: 'Salário de Outubro', valor: 6200.00, tipo: 'Receita', categoria: 'Salário', data: '01/10/2025' },
     { id: 2, descricao: 'Freelance de Design', valor: 1250.50, tipo: 'Receita', categoria: 'Extra', data: '05/10/2025' },
@@ -11,7 +6,6 @@ const transacoesExemplo = [
 ];
 const categoriasExemplo = ['Salário', 'Moradia', 'Alimentação', 'Extra', 'Lazer'];
 
-// --- FUNÇÕES COMPARTILHADAS ---
 function initAppStorage() {
     if (!localStorage.getItem('transacoes')) {
         localStorage.setItem('transacoes', JSON.stringify(transacoesExemplo));
@@ -115,20 +109,15 @@ function setupCategoryModal() {
     });
 }
 
-// ** FUNÇÃO CORRIGIDA/ADICIONADA AQUI **
-// Adiciona a classe 'active' ao link de navegação da página atual
 function highlightActiveLink() {
-    // Pega o nome do arquivo da URL atual (ex: "dashboard.html")
     const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
     navLinks.forEach(link => {
-        // Compara o href do link com a página atual
         if (link.getAttribute('href') === currentPage) {
             link.classList.add('active');
         }
     });
 }
 
-// Chama a função para destacar o link ativo assim que a página carregar
 document.addEventListener('DOMContentLoaded', highlightActiveLink);

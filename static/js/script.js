@@ -1,31 +1,21 @@
-// ======================================================
-// SCRIPT.JS - LÓGICA ESPECÍFICA DO DASHBOARD
-// ======================================================
-
 document.addEventListener('DOMContentLoaded', function () {
-    // --- ELEMENTOS E MODAIS DA PÁGINA ---
     const novaTransacaoModal = new bootstrap.Modal(document.getElementById('novaTransacaoModal'));
     const formNovaTransacao = document.getElementById('formNovaTransacao');
     const transacaoDataInput = document.getElementById('transacaoData');
-
-    // --- FUNÇÕES ESPECÍFICAS DO DASHBOARD ---
 
     function setDefaultDate() {
         const today = new Date().toLocaleDateString('en-CA');
         transacaoDataInput.value = today;
     }
     
-    // ATUALIZADO: Agora calcula totais apenas para o mês atual
     function atualizarCards() {
         const transacoes = JSON.parse(localStorage.getItem('transacoes')) || [];
         const hoje = new Date();
         const mesAtual = hoje.getMonth();
         const anoAtual = hoje.getFullYear();
 
-        // Filtra as transações para incluir apenas as do mês e ano atuais
         const transacoesDoMes = transacoes.filter(t => {
             const [dia, mes, ano] = t.data.split('/');
-            // O mês no objeto Date é baseado em zero (0-11), então subtraímos 1
             const dataDaTransacao = new Date(ano, mes - 1, dia);
             return dataDaTransacao.getMonth() === mesAtual && dataDaTransacao.getFullYear() === anoAtual;
         });
@@ -46,11 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     function renderizarPaginaDashboard() {
-        renderizarTransacoes('transaction-list', 4); // Continua mostrando só as 4 últimas na lista
-        atualizarCards(); // Mas os cards agora calculam com base no mês
+        renderizarTransacoes('transaction-list', 4);
+        atualizarCards();
     }
-    
-    // --- EVENT LISTENERS DO DASHBOARD ---
     
     formNovaTransacao.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -77,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
         novaTransacaoModal.hide();
     });
     
-    // --- INICIALIZAÇÃO DA PÁGINA ---
     initAppStorage(); 
     carregarCategorias(); 
     setupCategoryModal(); 

@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const transacoes = JSON.parse(localStorage.getItem('transacoes')) || [];
 
-    // --- GRÁFICO 1: Despesas por Categoria (Gráfico de Rosca) ---
     function renderCategoryChart() {
         const ctx = document.getElementById('categoryChart').getContext('2d');
         const despesas = transacoes.filter(t => t.tipo === 'Despesa');
@@ -40,12 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- GRÁFICO 2: Receitas vs Despesas (Gráfico de Barras) ---
     function renderIncomeExpenseChart() {
         const ctx = document.getElementById('incomeExpenseChart').getContext('2d');
 
-        // Para este exemplo, vamos agrupar tudo em um único mês (Outubro/2025)
-        // Em uma aplicação real, você agruparia por vários meses.
         const totalReceitas = transacoes
             .filter(t => t.tipo === 'Receita')
             .reduce((acc, t) => acc + t.valor, 0);
@@ -57,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Outubro 2025'], // Em uma app real: ['Jan', 'Fev', 'Mar', ...]
+                labels: ['Outubro 2025'],
                 datasets: [{
                     label: 'Receitas',
                     data: [totalReceitas],
@@ -83,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Renderiza os gráficos
     renderCategoryChart();
     renderIncomeExpenseChart();
 });
