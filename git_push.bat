@@ -27,7 +27,7 @@ git status
 
 echo.
 echo Fazendo commit...
-git commit -m "Backend completo com Flask, SQLAlchemy e autenticação"
+git commit -m "atualização final"
 
 echo.
 echo Configurando remote...
