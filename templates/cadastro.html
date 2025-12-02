@@ -33,9 +33,9 @@
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" required>
                 </div>
-                      <div class="mb-3">
-                    <label for="password" class="form-label">Usuário</label>
-                    <input type="text" class="form-control"  required>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuário</label>
+                    <input type="text" class="form-control" id="username" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Senha</label>
@@ -108,6 +108,7 @@
             
             const dados = {
                 nome: document.getElementById('name').value,
+                username: document.getElementById('username').value,
                 email: document.getElementById('email').value,
                 senha: document.getElementById('password').value,
                 tipo: tipo

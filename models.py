@@ -10,6 +10,7 @@ class Usuario(UserMixin, db.Model):
     __tablename__ = 'usuarios'
     
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False, index=True)
     nome = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False, index=True)
     senha_hash = db.Column(db.String(255), nullable=False)
@@ -21,6 +22,7 @@ class Usuario(UserMixin, db.Model):
     cnpj = db.Column(db.String(18), nullable=True)
     razao_social = db.Column(db.String(200), nullable=True)
     inscricao_estadual = db.Column(db.String(50), nullable=True)
+    meta_despesa_mensal = db.Column(db.Numeric(10, 2), nullable=True)
     
     data_criacao = db.Column(db.DateTime, default=datetime.utcnow)
     data_atualizacao = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -37,6 +39,7 @@ class Usuario(UserMixin, db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'username': self.username,
             'nome': self.nome,
             'email': self.email,
             'tipo': self.tipo,
@@ -44,7 +47,8 @@ class Usuario(UserMixin, db.Model):
             'data_nascimento': self.data_nascimento.strftime('%d/%m/%Y') if self.data_nascimento else None,
             'cnpj': self.cnpj,
             'razao_social': self.razao_social,
-            'inscricao_estadual': self.inscricao_estadual
+            'inscricao_estadual': self.inscricao_estadual,
+            'meta_despesa_mensal': float(self.meta_despesa_mensal) if self.meta_despesa_mensal is not None else None
         }
 
 

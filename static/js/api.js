@@ -50,6 +50,13 @@ async function obterUsuarioAtual() {
     return await apiRequest('/usuario/atual');
 }
 
+async function atualizarMetaDespesa(meta) {
+    return await apiRequest('/usuario/meta', {
+        method: 'PUT',
+        body: JSON.stringify({ meta_despesa_mensal: meta })
+    });
+}
+
 // ==================== TRANSAÇÕES ====================
 
 async function listarTransacoes() {

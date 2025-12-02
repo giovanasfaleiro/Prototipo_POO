@@ -14,13 +14,17 @@ def cadastro():
     try:
         data = request.get_json()
         
-        if not data.get('email') or not data.get('senha') or not data.get('nome'):
-            return jsonify({'error': 'Email, senha e nome são obrigatórios'}), 400
+        if not data.get('email') or not data.get('senha') or not data.get('nome') or not data.get('username'):
+            return jsonify({'error': 'Email, usuário, senha e nome são obrigatórios'}), 400
         
         if Usuario.query.filter_by(email=data['email']).first():
             return jsonify({'error': 'Email já cadastrado'}), 400
         
+        if Usuario.query.filter_by(username=data['username']).first():
+            return jsonify({'error': 'Usuário já cadastrado'}), 400
+        
         usuario = Usuario(
+            username=data['username'],
             nome=data['nome'],
             email=data['email'],
             tipo=data.get('tipo', 'PF')
@@ -98,6 +102,24 @@ def usuario_atual():
     if not usuario:
         return jsonify({'error': 'Usuário não encontrado'}), 404
     return jsonify(usuario.to_dict()), 200
+
+
+@api.route('/usuario/meta', methods=['PUT'])
+@login_required
+def atualizar_meta_usuario():
+    try:
+        usuario = get_current_user()
+        data = request.get_json()
+        meta = data.get('meta_despesa_mensal')
+        if meta is None:
+            usuario.meta_despesa_mensal = None
+        else:
+            usuario.meta_despesa_mensal = float(meta)
+        db.session.commit()
+        return jsonify(usuario.to_dict()), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
 
 
 # ==================== TRANSAÇÕES ====================
@@ -321,6 +343,7 @@ def estatisticas_dashboard():
             'saldo_atual': saldo_atual,
             'total_receitas': total_receitas,
             'total_despesas': total_despesas,
+            'meta_despesa_mensal': float(usuario.meta_despesa_mensal) if usuario.meta_despesa_mensal is not None else None,
             'ultimas_transacoes': [t.to_dict() for t in ultimas_transacoes]
         }), 200
         

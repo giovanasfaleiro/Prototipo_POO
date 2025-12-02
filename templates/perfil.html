@@ -34,8 +34,8 @@
         
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                <div class="stat-card">
-                     <div class="d-flex align-items-center mb-4">
+                <div class="stat-card mb-4">
+                    <div class="d-flex align-items-center mb-4">
                         <div class="icon-box me-3"><i class="bi bi-person-circle"></i></div>
                         <h4 class="font-heading mb-0" id="user-name">Carregando...</h4>
                     </div>
@@ -53,6 +53,18 @@
                              <span id="user-birthdate">---</span>
                         </li>
                     </ul>
+                </div>
+
+                <div class="stat-card">
+                    <h5 class="font-heading mb-3">Meta mensal de despesas</h5>
+                    <form id="meta-form">
+                        <div class="mb-3">
+                            <label for="meta-despesas" class="form-label">Valor da meta (R$)</label>
+                            <input type="number" step="0.01" min="0" class="form-control" id="meta-despesas" placeholder="Ex: 1500.00">
+                        </div>
+                        <button type="submit" class="btn btn-custom-primary w-100">Salvar meta</button>
+                        <div id="meta-feedback" class="form-text mt-2 text-success d-none">Meta salva com sucesso.</div>
+                    </form>
                 </div>
             </div>
         </div>

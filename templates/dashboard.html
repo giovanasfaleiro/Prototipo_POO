@@ -57,7 +57,10 @@
     <main class="container py-5">
         <div class="mb-4">
             <h1 class="display-5 font-heading">Dashboard</h1>
-            <p class="text-muted">Bem-vindo(a) de volta, {{ usuario.nome }}! Aqui está um resumo das suas finanças.</p>
+            <p class="text-muted">Bem-vindo(a) de volta, {{ usuario.username }}! Aqui está um resumo das suas finanças.</p>
+            <div id="meta-alert" class="alert alert-warning mt-3 d-none" role="alert">
+                Você ultrapassou sua meta de despesas deste mês.
+            </div>
         </div>
 
         <div class="row g-4 mb-5">

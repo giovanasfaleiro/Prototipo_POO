@@ -145,6 +145,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('saldo-atual').textContent = formatCurrency(estatisticas.saldo_atual);
                 document.getElementById('total-receitas').textContent = formatCurrency(estatisticas.total_receitas);
                 document.getElementById('total-despesas').textContent = formatCurrency(estatisticas.total_despesas);
+
+                const metaAlert = document.getElementById('meta-alert');
+                if (metaAlert) {
+                    if (estatisticas.meta_despesa_mensal != null && estatisticas.total_despesas > estatisticas.meta_despesa_mensal) {
+                        metaAlert.classList.remove('d-none');
+                    } else {
+                        metaAlert.classList.add('d-none');
+                    }
+                }
             } catch (error) {
                 console.error('Erro ao atualizar dashboard:', error);
             }
@@ -325,6 +334,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (emailElement) {
                     emailElement.textContent = usuario.email;
                 }
+
+                const metaInput = document.getElementById('meta-despesas');
+                if (metaInput) {
+                    metaInput.value = usuario.meta_despesa_mensal != null ? usuario.meta_despesa_mensal : '';
+                }
             } catch (error) {
                 console.error('Erro ao carregar perfil:', error);
                 document.getElementById('user-name').textContent = "Erro ao carregar dados";
@@ -332,6 +346,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         carregarPerfil();
+
+        const metaForm = document.getElementById('meta-form');
+        if (metaForm) {
+            metaForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const metaInput = document.getElementById('meta-despesas');
+                const feedback = document.getElementById('meta-feedback');
+                let value = metaInput.value;
+                let meta = value === '' ? null : parseFloat(value);
+
+                try {
+                    await atualizarMetaDespesa(meta);
+                    if (feedback) {
+                        feedback.classList.remove('d-none');
+                        setTimeout(() => feedback.classList.add('d-none'), 3000);
+                    }
+                } catch (error) {
+                    alert('Erro ao salvar meta: ' + error.message);
+                }
+            });
+        }
     }
 
     // ==================== INICIALIZAÇÃO GERAL ====================

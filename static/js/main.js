@@ -35,9 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
         const transacoesOrdenadas = [...transacoes].sort((a, b) => {
-            const dataA = a.data ? new Date(a.data.split('/').reverse().join('-')) : new Date(0);
-            const dataB = b.data ? new Date(b.data.split('/').reverse().join('-')) : new Date(0);
-            return dataB - dataA;
+            return b.id - a.id; 
         });
         const transacoesParaExibir = limit ? transacoesOrdenadas.slice(0, limit) : transacoesOrdenadas;
         transacoesParaExibir.forEach(t => {
